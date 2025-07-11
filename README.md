@@ -14,11 +14,11 @@ I used the api route in nextjs to build the trest api, by speacfying the route o
 the path of the api is api/search which accpets a query params (search term and others), which then will contact the api itunes api with the sent query params.
 
 afterwards, the response from the api itunes is saved on the database using a local database which is prisma.
-lastly, the result is shown to the user with two lists top podcasts and top espoisdes.
+lastly, the result is shown to the user with two lists top podcasts and top episodes.
 
-In prisma I have two table one to save the top espoisdes and one to save the top podcasts,
+In prisma I have two table one to save the top episodes and one to save the top podcasts,
 I have one api that is shared between the two lists shown in the frontend, but with different query params to send to the api.
 
 To show the top podcasts the route is https://itunes.apple.com/search?term="فنجان"
 
-To show the top espoisdes the route is https://itunes.apple.com/search?term="فنجان"&media="all"&entity="podcastEpisode"&limit="15"
+To show the top episodes the route is https://itunes.apple.com/search?term="فنجان"&media="all"&entity="podcastEpisode"&limit="15"
