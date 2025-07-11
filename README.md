@@ -3,15 +3,15 @@ To start the project follow the below steps:
 1- npm i
 2- npx prisma generate
 3- npx prisma db push
-4- npx prisma studio (to see the api result saved in the database, refeash the window to see the latest data saved in the database)
+4- npx prisma studio (to see the api result saved in the database, refresh the window to see the latest data saved in the database)
 npm run dev
 
 My approch as the following:
 
 In order to build the rest api that the will contact the itunes api, I used the nextjs as a full-stack,
-I used the api route in nextjs to build the trest api, by speacfying the route of the api, that is exist in the api folder under the src/app.
+I used the api route in nextjs to build the rest api, by speacfying the route of the api, that is exist in the api folder under the src/app.
 
-the path of the api is api/search which accpets a query params (search term and others), which then will contact the api itunes api with the sent query params.
+the path of the api is api/search which accepts a query params (search term and others), which then will contact the api itunes api with the sent query params.
 
 afterwards, the response from the api itunes is saved on the database using a local database which is prisma.
 lastly, the result is shown to the user with two lists top podcasts and top episodes.
