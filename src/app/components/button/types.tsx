@@ -5,5 +5,6 @@ export interface ButtonProps {
   type: "submit" | "button";
   icon?: ReactNode | ReactElement;
   iconOnly?: boolean;
-  onClick?: (e:any) => void;
+  onClick?: (e: any) => void;
+  classes?: string;
 }

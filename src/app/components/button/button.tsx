@@ -7,6 +7,7 @@ const Button = ({
   icon: Icon,
   iconOnly,
   onClick,
+  classes,
 }: ButtonProps) => {
   return (
     <>
@@ -14,7 +15,7 @@ const Button = ({
         type={type}
         onClick={onClick}
         className={`
-      
+          ${classes && classes}
          ${
            !iconOnly &&
            !Icon &&
@@ -25,7 +26,8 @@ const Button = ({
          px-3
          py-[7px]
         `
-         }`}
+         }
+         `}
       >
         {iconOnly ? Icon : <>{label}</>}
       </button>

@@ -11,11 +11,11 @@ import { HeaderProps } from "./type";
 const Header = ({ searchTerm, setSearchText }: HeaderProps) => {
   return (
     <header className="flex flex-row  items-center gap-3">
-      <div className="px-[5px] py-3.5">
+      <div className="px-[5px] py-3.5 lg:block hidden">
         <RiArrowLeftSLine size={24} className="text-white opacity-50 " />
       </div>
 
-      <div className="px-[5px] py-3.5">
+      <div className="px-[5px] py-3.5 lg:block hidden">
         <RiArrowRightSLine size={24} className="text-white opacity-50 " />
       </div>
 
@@ -25,8 +25,9 @@ const Header = ({ searchTerm, setSearchText }: HeaderProps) => {
         placeHolder="Search through over 70 million podcasts and episodes..."
       />
 
-      <Button label="Log in" type="button" />
-      <Button label="Sign Up" type="button" />
+    
+      <Button label="Log in" type="button" classes="lg:block hidden"/>
+      <Button label="Sign Up" type="button" classes="lg:block hidden"/>
       <div className="px-[5px] py-3.5 ">
         <RiMore2Fill size={24} className="text-white  " />
       </div>
