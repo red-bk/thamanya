@@ -1,0 +1,67 @@
+import { memo } from "react";
+import { RiMore2Fill } from "@remixicon/react";
+import Button from "../../button/button";
+import { TopPodcastsListProps } from "./types";
+import Image from "next/image";
+
+const TopPodcastsList = ({
+  podcastsLayout,
+  podcasts,
+}: TopPodcastsListProps) => {
+  return (
+    <div
+      className={`border-t border-[rgba(255,255,255,0.25)] ${
+        podcastsLayout === "scroll"
+          ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
+          : "grid grid-cols-6 gap-3"
+      }`}
+    >
+      {podcasts?.map((item) => {
+        return (
+          <div
+            className="flex flex-col gap-3"
+            key={`${item.collectionId}-${item.trackId}`}
+          >
+            <div
+              className={`
+          
+          h-[200px] 
+          ${podcastsLayout === "scroll" && `w-[200px] `}
+              `}
+            >
+              <Image
+                src={item.artworkUrl100}
+                alt="img"
+                width={400}
+                height={400}
+                className="h-full w-full"
+              />
+            </div>
+            <div className="flex justify-between">
+              <div className="flex flex-col ">
+                <p className="text-white line-clamp-1 ">{item.trackName}</p>
+                <p className="text-white">{item.artistName}</p>
+              </div>
+
+              <div className="relative inline-block">
+                <Button
+                  label="more icon"
+                  type="button"
+                  icon={
+                    <RiMore2Fill
+                      size={24}
+                      className="text-[rgba(255,255,255,0.25)] "
+                    />
+                  }
+                  iconOnly
+                />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default memo(TopPodcastsList);
