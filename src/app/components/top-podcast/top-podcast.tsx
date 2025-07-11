@@ -62,18 +62,11 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
           isMenuOpen={isMenuOpen}
           handleButtonClick={handleButtonClick}
         />
-        <div
-          className={` ${
-            podcastsLayout === "scroll"
-              ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
-              : "grid grid-cols-6 gap-3"
-          }`}
-        >
-          <TopPodcastList
-            podcastsLayout={podcastsLayout}
-            podcasts={podcasts?.results}
-          />
-        </div>
+
+        <TopPodcastList
+          podcastsLayout={podcastsLayout}
+          podcasts={podcasts?.results}
+        />
       </div>
     </>
   );

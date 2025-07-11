@@ -13,7 +13,7 @@ const TopPodcastsList = ({
       className={`border-t border-[rgba(255,255,255,0.25)] ${
         podcastsLayout === "scroll"
           ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
-          : "grid grid-cols-6 gap-3"
+          : "grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3"
       }`}
     >
       {podcasts?.map((item) => {
