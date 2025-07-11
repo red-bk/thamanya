@@ -4,7 +4,7 @@ To start the project follow the below steps:
 2- npx prisma generate
 3- npx prisma db push
 4- npx prisma studio (to see the api result saved in the database, refresh the window to see the latest data saved in the database)
-npm run dev
+5- npm run dev
 
 My approch as the following:
 
