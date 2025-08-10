@@ -9,6 +9,7 @@ import TopEpisodesCompactLayout from "./top-episodes-compact-layout/top-episodes
 
 const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
   const [episodes, setEpisodes] = useState<any>();
+  const [loading, setLoading] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [episodesLayout, setEpisodesLayout] = useState<
@@ -17,6 +18,8 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
 
   useEffect(() => {
     async function fetchEpisodes() {
+      setLoading(true); 
+
       const params = new URLSearchParams();
 
       if (searchTerm) params.append("term", searchTerm);
@@ -24,10 +27,15 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
       params.append("entity", "podcastEpisode");
       params.append("limit", "15");
 
-      const res = await fetch(`/api/search?${params.toString()}`);
-      const data = await res.json();
-
-      setEpisodes(data);
+      try {
+        const res = await fetch(`/api/search?${params.toString()}`);
+        const data = await res.json();
+        setEpisodes(data); 
+      } catch (error) {
+        console.error("Failed to fetch episodes", error);
+      } finally {
+        setLoading(false); 
+      }
     }
 
     fetchEpisodes();
@@ -86,7 +94,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     }
   };
 
-  if (!episodes?.results?.length) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center">
         <Loader />;
@@ -122,27 +130,34 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
           </div>
         </div>
 
-        <div
-          className={`
-        gap-3 
-        pt-5 
-        border-t 
-        text-[rgba(255,255,255,0.25)]
-        ${episodesLayout == "scroll" && `flex  overflow-x-auto  `}
-        ${
-          episodesLayout == "compact" && `    grid md:grid-cols-3   grid-cols-1`
-        }
-        ${
-          episodesLayout == "grid" &&
-          `     
-          grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1`
-        }
-    `}
-        >
-          {episodes?.results?.map((item: any) => {
-            return topEpisodesLayout(item);
-          })}
-        </div>
+        {episodes?.results?.length === 0 ? (
+          <p className="flex justify-center items-center mt-16 text-gray-500">
+            No episodes found.
+          </p>
+        ) : (
+          <div
+            className={`
+          gap-3 
+          pt-5 
+          border-t 
+          text-[rgba(255,255,255,0.25)]
+          ${episodesLayout == "scroll" && `flex  overflow-x-auto  `}
+          ${
+            episodesLayout == "compact" &&
+            `    grid md:grid-cols-3   grid-cols-1`
+          }
+          ${
+            episodesLayout == "grid" &&
+            `     
+            grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1`
+          }
+      `}
+          >
+            {episodes?.results?.map((item: any) => {
+              return topEpisodesLayout(item);
+            })}
+          </div>
+        )}
       </div>
     </>
   );

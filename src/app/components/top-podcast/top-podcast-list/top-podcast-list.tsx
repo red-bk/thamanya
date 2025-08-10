@@ -8,6 +8,16 @@ const TopPodcastsList = ({
   podcastsLayout,
   podcasts,
 }: TopPodcastsListProps) => {
+
+
+  if (podcasts?.length === 0) {
+    return (
+      <div className="flex justify-center items-center mt-16 text-gray-500">
+        No podcasts found.
+      </div>
+    );
+  }
+
   return (
     <div
       className={`border-t border-[rgba(255,255,255,0.25)] ${

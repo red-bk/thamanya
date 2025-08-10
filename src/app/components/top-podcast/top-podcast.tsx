@@ -7,6 +7,7 @@ import TopPodcastList from "./top-podcast-list/top-podcast-list";
 
 const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
   const [podcasts, setPodcasts] = useState<Podcasts>();
+  const [loading, setLoading] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [podcastsLayout, setPodcastsLayout] = useState<"grid" | "scroll">(
@@ -15,11 +16,18 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
 
   useEffect(() => {
     async function fetchPodcast() {
+      setLoading(true);
       const params = new URLSearchParams();
       if (searchTerm) params.append("term", searchTerm);
-      const res = await fetch(`/api/search?${params.toString()}`);
-      const data = await res.json();
-      setPodcasts(data);
+      try {
+        const res = await fetch(`/api/search?${params.toString()}`);
+        const data = await res.json();
+        setPodcasts(data); 
+      } catch (error) {
+        console.error("Failed to fetch podcasts", error);
+      } finally {
+        setLoading(false); 
+      }
     }
 
     fetchPodcast();
@@ -45,7 +53,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
     setIsMenuOpen(false);
   };
 
-  if (!podcasts?.results?.length) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center mt-16">
         <Loader />;
@@ -67,7 +75,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
 
         <TopPodcastList
           podcastsLayout={podcastsLayout}
-          podcasts={podcasts?.results}
+          podcasts={podcasts?.results ?? []}
         />
       </div>
     </>
