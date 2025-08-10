@@ -14,6 +14,7 @@ const TopPodcastsHeader = ({
   menuOptionClick,
   isMenuOpen,
   handleButtonClick,
+  setIsMenuOpen
 }: TopPodcastsHeaderProps) => {
   const moreBtnOptions = useMemo(() => {
     const options = [];
@@ -28,6 +29,8 @@ const TopPodcastsHeader = ({
     return options;
   }, [podcastsLayout]);
 
+  const handleCloseMenu = () => setIsMenuOpen(false);
+  
   return (
     <>
       <div className="flex justify-between pb-5 border-b border-[rgba(255,255,255,0.25)]">
@@ -62,10 +65,11 @@ const TopPodcastsHeader = ({
               onClick={handleButtonClick}
             />
             <Menu
+              onOptionClick={menuOptionClick}
               isOpen={isMenuOpen}
-              onClose={menuOptionClick}
               options={moreBtnOptions}
-            />
+              onClose={handleCloseMenu}
+              />
           </div>
         </div>
       </div>

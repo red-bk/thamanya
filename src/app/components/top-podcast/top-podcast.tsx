@@ -32,7 +32,8 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
 
   const menuOptionClick = (event: React.MouseEvent) => {
     event.stopPropagation();
-    switch (event.target.value) {
+    const target = event.target as HTMLButtonElement;
+    switch (target.value) {
       case "1":
         setPodcastsLayout("grid");
         break;
@@ -60,6 +61,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
           podcastsLayout={podcastsLayout}
           menuOptionClick={menuOptionClick}
           isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
           handleButtonClick={handleButtonClick}
         />
 

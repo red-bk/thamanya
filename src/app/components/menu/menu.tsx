@@ -1,7 +1,7 @@
 import { memo, useRef, useEffect } from "react";
 import { MenuProps } from "./types";
 
-const Menu = ({ isOpen, onClose, options }: MenuProps) => {
+const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const Menu = ({ isOpen, onClose, options }: MenuProps) => {
         // Check if the clicked element is the button or its children
         const target = event.target as Element;
         if (!target.closest("button")) {
-          onClose();
+          onClose && onClose();
         }
       }
     };
@@ -40,7 +40,7 @@ const Menu = ({ isOpen, onClose, options }: MenuProps) => {
               className="px-4 py-1 text-white text-left hover:bg-purple-500/30 transition-colors"
               onClick={(e) => {
                 console.log("Add to My Podcasts clicked");
-                onClose(e);
+                onOptionClick(e);
               }}
             >
               {option.label}

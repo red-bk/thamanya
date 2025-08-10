@@ -34,10 +34,15 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
   }, [searchTerm]);
 
   const moreBtnOptions = useMemo(() => {
-    const options = [
-      { label: "Switch layout to Scroll", value: 1 },
-      { label: "Switch layout to Grid", value: 2 },
-    ];
+    const options = [];
+
+    if (episodesLayout !== "scroll") {
+      options.push({ label: "Switch layout to Scroll", value: 1 });
+    }
+
+    if (episodesLayout !== "grid") {
+      options.push({ label: "Switch layout to Grid", value: 2 });
+    }
 
     if (episodesLayout !== "compact") {
       options.push({ label: "Switch layout to Compact", value: 3 });
@@ -52,9 +57,10 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const menuOptionClick = (event: React.MouseEvent) => {
+  const menuOptionClick = (event: React.MouseEvent | any) => {
     event.stopPropagation();
-    switch (event.target.value) {
+    const target = event.target as HTMLButtonElement;
+    switch (target.value) {
       case "1":
         setEpisodesLayout("scroll");
         break;
@@ -69,7 +75,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     setIsMenuOpen(false);
   };
 
-  const topEpisodesLayout = (item) => {
+  const topEpisodesLayout = (item: any) => {
     switch (episodesLayout) {
       case "scroll":
       case "grid":
@@ -87,6 +93,8 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
       </div>
     );
   }
+
+  const handleCloseMenu = () => setIsMenuOpen(false);
 
   return (
     <>
@@ -106,8 +114,9 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
               />
               <Menu
                 isOpen={isMenuOpen}
-                onClose={(e) => menuOptionClick(e)}
                 options={moreBtnOptions}
+                onOptionClick={menuOptionClick}
+                onClose={handleCloseMenu}
               />
             </div>
           </div>
@@ -130,7 +139,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
         }
     `}
         >
-          {episodes?.results?.map((item) => {
+          {episodes?.results?.map((item: any) => {
             return topEpisodesLayout(item);
           })}
         </div>
