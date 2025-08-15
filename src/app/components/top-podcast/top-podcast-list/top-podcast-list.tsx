@@ -3,13 +3,12 @@ import { RiMore2Fill } from "@remixicon/react";
 import Button from "../../button/button";
 import { TopPodcastsListProps } from "./types";
 import Image from "next/image";
+import { getRandomColor } from "@/app/utils/utils";
 
 const TopPodcastsList = ({
   podcastsLayout,
   podcasts,
 }: TopPodcastsListProps) => {
-
-
   if (podcasts?.length === 0) {
     return (
       <div className="flex justify-center items-center mt-16 text-gray-500">
@@ -20,7 +19,8 @@ const TopPodcastsList = ({
 
   return (
     <div
-      className={`border-t border-[rgba(255,255,255,0.25)] ${
+      className={`border-t border-[rgba(255,255,255,0.25)] 
+        ${
         podcastsLayout === "scroll"
           ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
           : "grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3"
@@ -50,7 +50,7 @@ const TopPodcastsList = ({
             <div className="flex justify-between">
               <div className="flex flex-col ">
                 <p className="text-white line-clamp-1 ">{item.trackName}</p>
-                <p className="text-white">{item.artistName}</p>
+                <span className={getRandomColor()}>{item.artistName}</span>
               </div>
 
               <div className="relative inline-block">

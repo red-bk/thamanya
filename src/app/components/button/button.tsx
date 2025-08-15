@@ -15,6 +15,7 @@ const Button = ({
         type={type}
         onClick={onClick}
         className={`
+          cursor-pointer
           ${classes && classes}
          ${
            !iconOnly &&

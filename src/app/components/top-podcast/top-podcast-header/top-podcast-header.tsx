@@ -14,7 +14,7 @@ const TopPodcastsHeader = ({
   menuOptionClick,
   isMenuOpen,
   handleButtonClick,
-  setIsMenuOpen
+  setIsMenuOpen,
 }: TopPodcastsHeaderProps) => {
   const moreBtnOptions = useMemo(() => {
     const options = [];
@@ -30,37 +30,45 @@ const TopPodcastsHeader = ({
   }, [podcastsLayout]);
 
   const handleCloseMenu = () => setIsMenuOpen(false);
-  
+
   return (
     <>
-      <div className="flex justify-between pb-5 border-b border-[rgba(255,255,255,0.25)]">
+      <div className="flex justify-between pb-5 border-b border-[rgba(255,255,255,0.25)] sticky top-12 bg-[hsla(234,28%,12%,98%)]">
         <h2 className="text-white">
           {"Top podcasts for"} {searchTerm}
         </h2>
-        <div className="flex items-center">
-          <Button
-            label="more icon"
-            type="button"
-            icon={
-              <RiArrowLeftSLine size={24} className="text-white opacity-50 " />
-            }
-            iconOnly
-          />
-
-          <Button
-            label="more icon"
-            type="button"
-            icon={
-              <RiArrowRightSLine size={24} className="text-white opacity-50 " />
-            }
-            iconOnly
-          />
-
-          <div className="relative inline-block">
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center gap-3">
             <Button
               label="more icon"
               type="button"
-              icon={<RiMore2Fill size={24} className="text-white " />}
+              icon={
+                <RiArrowLeftSLine
+                  size={24}
+                  className="text-white opacity-50 "
+                />
+              }
+              iconOnly
+            />
+
+            <Button
+              label="more icon"
+              type="button"
+              icon={
+                <RiArrowRightSLine
+                  size={24}
+                  className="text-white opacity-50 "
+                />
+              }
+              iconOnly
+            />
+          </div>
+
+          <div className="relative  text-center flex  justify-center">
+            <Button
+              label="more icon"
+              type="button"
+              icon={<RiMore2Fill size={22} className="text-white " />}
               iconOnly
               onClick={handleButtonClick}
             />
@@ -69,7 +77,7 @@ const TopPodcastsHeader = ({
               isOpen={isMenuOpen}
               options={moreBtnOptions}
               onClose={handleCloseMenu}
-              />
+            />
           </div>
         </div>
       </div>

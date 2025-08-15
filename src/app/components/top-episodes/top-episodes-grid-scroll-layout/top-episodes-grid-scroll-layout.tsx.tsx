@@ -2,13 +2,16 @@ import { memo } from "react";
 import Image from "next/image";
 import { TopEpisodesGridScrollLayoutProps } from "./types";
 import { RiMore2Fill } from "@remixicon/react";
+import { getRandomBackgroundColor } from "@/app/utils/utils";
 
 const TopEpisodesGridScrollLayout = ({
   item,
 }: TopEpisodesGridScrollLayoutProps) => {
   return (
     <>
-      <div className="flex-shrink-0 bg-gray-800/50 rounded-lg overflow-hidden">
+      <div
+        className={`flex-shrink-0 rounded-lg overflow-hidden ${getRandomBackgroundColor()}`}
+      >
         <div className="flex">
           <div className="w-[100px] h-[100px] flex-shrink-0">
             <Image

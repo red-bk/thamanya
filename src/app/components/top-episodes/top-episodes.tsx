@@ -1,11 +1,10 @@
 import { memo, useEffect, useMemo, useState } from "react";
 import { TopEpisodesProps } from "./types";
-import { RiMore2Fill } from "@remixicon/react";
-import Menu from "../menu/menu";
-import Button from "../button/button";
 import Loader from "../loader/loader";
 import TopEpisodesGridScrollLayout from "./top-episodes-grid-scroll-layout/top-episodes-grid-scroll-layout.tsx";
 import TopEpisodesCompactLayout from "./top-episodes-compact-layout/top-episodes-compact-layout";
+import TopEpisodesHeader from "./top-episodes-header/top-episodes-header";
+import { useDebounce } from "@/app/hooks/useDebounce";
 
 const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
   const [episodes, setEpisodes] = useState<any>();
@@ -16,13 +15,16 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     "compact" | "grid" | "scroll"
   >("compact");
 
+  // 1. Debounce the incoming searchTerm
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
   useEffect(() => {
     async function fetchEpisodes() {
-      setLoading(true); 
+      setLoading(true);
 
       const params = new URLSearchParams();
 
-      if (searchTerm) params.append("term", searchTerm);
+      if (debouncedSearchTerm) params.append("term", debouncedSearchTerm);
       params.append("media", "all");
       params.append("entity", "podcastEpisode");
       params.append("limit", "15");
@@ -30,16 +32,22 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
       try {
         const res = await fetch(`/api/search?${params.toString()}`);
         const data = await res.json();
-        setEpisodes(data); 
+        setEpisodes(data);
       } catch (error) {
         console.error("Failed to fetch episodes", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     }
 
-    fetchEpisodes();
-  }, [searchTerm]);
+    // Only fetch if we have a debounced search term
+    if (debouncedSearchTerm) {
+      fetchEpisodes();
+    } else {
+      // Clear results if search is empty
+      setEpisodes(undefined);
+    }
+  }, [debouncedSearchTerm]);
 
   const moreBtnOptions = useMemo(() => {
     const options = [];
@@ -106,29 +114,15 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
 
   return (
     <>
-      <div className="flex flex-col gap-5">
-        <div className="flex justify-between">
-          <h2 className="text-white">
-            {"Top episodes for"} {searchTerm}
-          </h2>
-          <div className="flex items-center">
-            <div className="relative inline-block">
-              <Button
-                label="more icon"
-                type="button"
-                icon={<RiMore2Fill size={24} className="text-white " />}
-                iconOnly
-                onClick={handleButtonClick}
-              />
-              <Menu
-                isOpen={isMenuOpen}
-                options={moreBtnOptions}
-                onOptionClick={menuOptionClick}
-                onClose={handleCloseMenu}
-              />
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col gap-5 px-6">
+        <TopEpisodesHeader
+          searchTerm={searchTerm}
+          menuOptionClick={menuOptionClick}
+          isMenuOpen={isMenuOpen}
+          handleButtonClick={handleButtonClick}
+          menuOptions={moreBtnOptions}
+          handleCloseMenu={handleCloseMenu}
+        />
 
         {episodes?.results?.length === 0 ? (
           <p className="flex justify-center items-center mt-16 text-gray-500">
@@ -137,19 +131,12 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
         ) : (
           <div
             className={`
-          gap-3 
-          pt-5 
-          border-t 
-          text-[rgba(255,255,255,0.25)]
-          ${episodesLayout == "scroll" && `flex  overflow-x-auto  `}
-          ${
-            episodesLayout == "compact" &&
-            `    grid md:grid-cols-3   grid-cols-1`
-          }
+          gap-3         
+          ${episodesLayout == "scroll" && `flex  overflow-x-auto`}
+          ${episodesLayout == "compact" && `grid md:grid-cols-3   grid-cols-1`}
           ${
             episodesLayout == "grid" &&
-            `     
-            grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1`
+            `grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1`
           }
       `}
           >
