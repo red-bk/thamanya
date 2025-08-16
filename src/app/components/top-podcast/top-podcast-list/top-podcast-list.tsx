@@ -19,12 +19,12 @@ const TopPodcastsList = ({
 
   return (
     <div
-      className={`border-t border-[rgba(255,255,255,0.25)] 
+      className={`
         ${
-        podcastsLayout === "scroll"
-          ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
-          : "grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3"
-      }`}
+          podcastsLayout === "scroll"
+            ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
+            : "grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3"
+        }`}
     >
       {podcasts?.map((item) => {
         return (
@@ -34,7 +34,6 @@ const TopPodcastsList = ({
           >
             <div
               className={`
-          
           h-[200px] 
           ${podcastsLayout === "scroll" && `w-[200px] `}
               `}
@@ -49,20 +48,19 @@ const TopPodcastsList = ({
             </div>
             <div className="flex justify-between">
               <div className="flex flex-col ">
-                <p className="text-white line-clamp-1 ">{item.trackName}</p>
-                <span className={getRandomColor()}>{item.artistName}</span>
+                <p className=" line-clamp-1 text-[0.875rem] font-bold-arabic">
+                  {item.trackName}
+                </p>
+                <span className={`${getRandomColor()} text-xs`}>
+                  {item.artistName}
+                </span>
               </div>
 
               <div className="relative inline-block">
                 <Button
                   label="more icon"
                   type="button"
-                  icon={
-                    <RiMore2Fill
-                      size={24}
-                      className="text-[rgba(255,255,255,0.25)] "
-                    />
-                  }
+                  icon={<RiMore2Fill size={24} className="text-white-25" />}
                   iconOnly
                 />
               </div>

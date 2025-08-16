@@ -16,7 +16,8 @@ const TopEpisodesCompactLayout = ({ item }: TopEpisodesCompactLayoutProps) => {
         justify-between  
         rounded-[3px]  
         pb-2 
-        hover:bg-[rgba(0,0,0,.4)] p-2  
+       hover:bg-black-40
+        p-2  
       relative
       after:content-['']
     after:absolute
@@ -24,7 +25,7 @@ const TopEpisodesCompactLayout = ({ item }: TopEpisodesCompactLayoutProps) => {
     after:right-0
     after:bottom-0
     after:h-[1px]
-    after:bg-[rgba(255,255,255,0.25)]
+    after:bg-white-25
     "
         key={item.trackId}
       >
@@ -38,9 +39,9 @@ const TopEpisodesCompactLayout = ({ item }: TopEpisodesCompactLayoutProps) => {
           />
 
           <div className="flex flex-col">
-            <span className="text-white">{collectionName}</span>
+            <span className=" text-sm mb-1">{collectionName}</span>
 
-            <span className={getRandomColor()}>{trackName}</span>
+            <span className={`${getRandomColor()} text-xs`}>{trackName}</span>
           </div>
         </div>
 
@@ -48,12 +49,7 @@ const TopEpisodesCompactLayout = ({ item }: TopEpisodesCompactLayoutProps) => {
           label="more icon"
           type="button"
           classes="h-fit"
-          icon={
-            <RiMore2Fill
-              size={24}
-              className="text-[rgba(255,255,255,0.25)]"
-            />
-          }
+          icon={<RiMore2Fill size={24} className="text-white-25" />}
           iconOnly
         />
       </div>

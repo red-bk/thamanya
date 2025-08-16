@@ -21,8 +21,7 @@ const Button = ({
            !iconOnly &&
            !Icon &&
            `
-          bg-[linear-gradient(to_bottom,_#40678c,_#2c5378)]
-         text-white
+          bg-gradient-blue
          rounded-[5px]
          px-3
          py-[7px]

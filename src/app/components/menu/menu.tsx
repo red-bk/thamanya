@@ -4,6 +4,7 @@ import { MenuProps } from "./types";
 const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // handle Click Outside of the menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -37,7 +38,7 @@ const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
             <button
               value={option.value}
               key={option.value}
-              className="px-4 py-1 text-white text-left hover:bg-purple-500/30 transition-colors"
+              className="px-4 py-1  text-left hover:bg-purple-500/30 transition-colors"
               onClick={(e) => {
                 console.log("Add to My Podcasts clicked");
                 onOptionClick(e);

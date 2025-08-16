@@ -13,9 +13,10 @@ const TopPodcastsHeader = ({
   podcastsLayout,
   menuOptionClick,
   isMenuOpen,
-  handleButtonClick,
+  moreBtnClicked,
   setIsMenuOpen,
 }: TopPodcastsHeaderProps) => {
+  // more button options
   const moreBtnOptions = useMemo(() => {
     const options = [];
 
@@ -33,45 +34,37 @@ const TopPodcastsHeader = ({
 
   return (
     <>
-      <div className="flex justify-between pb-5 border-b border-[rgba(255,255,255,0.25)] sticky top-12 bg-[hsla(234,28%,12%,98%)]">
-        <h2 className="text-white">
-          {"Top podcasts for"} {searchTerm}
-        </h2>
+      <div className="flex justify-between pb-5 border-b border-white-25 sticky top-12 bg-dark-blue-98">
+        <h2 className="font-bold-arabic">Top podcasts for {searchTerm}</h2>
         <div className="flex items-center justify-center gap-3">
           <div className="flex items-center justify-center gap-3">
+            {/* this is left arrow  */}
             <Button
               label="more icon"
               type="button"
-              icon={
-                <RiArrowLeftSLine
-                  size={24}
-                  className="text-white opacity-50 "
-                />
-              }
+              icon={<RiArrowLeftSLine size={24} className="text-white/50" />}
               iconOnly
             />
+            {/* this is right arrow  */}
 
             <Button
               label="more icon"
               type="button"
-              icon={
-                <RiArrowRightSLine
-                  size={24}
-                  className="text-white opacity-50 "
-                />
-              }
+              icon={<RiArrowRightSLine size={24} className="text-white/50 " />}
               iconOnly
             />
           </div>
 
           <div className="relative  text-center flex  justify-center">
+            {/* this is the more button (three dots) */}
             <Button
               label="more icon"
               type="button"
-              icon={<RiMore2Fill size={22} className="text-white " />}
+              icon={<RiMore2Fill size={22} />}
               iconOnly
-              onClick={handleButtonClick}
+              onClick={moreBtnClicked}
             />
+            {/* this is the menu options  */}
             <Menu
               onOptionClick={menuOptionClick}
               isOpen={isMenuOpen}

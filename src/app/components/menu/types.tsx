@@ -1,6 +1,6 @@
 export interface MenuProps {
   isOpen: boolean;
-  onClose?: (e?:MouseEvent| React.MouseEvent) => void;
+  onClose?: (e?: MouseEvent | React.MouseEvent) => void;
   options: Options[];
   onOptionClick: (event: React.MouseEvent) => void;
 }

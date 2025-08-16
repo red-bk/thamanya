@@ -11,12 +11,12 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
   const [loading, setLoading] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // podcasts layout when the more button is clicked (grid || scroll)
   const [podcastsLayout, setPodcastsLayout] = useState<"grid" | "scroll">(
     "scroll"
   );
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500); // 500ms debounce
-
 
   useEffect(() => {
     async function fetchPodcast() {
@@ -24,14 +24,15 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
         setPodcasts(undefined); // optionally clear results if no term
         return;
       }
-  
+
       setLoading(true);
       const params = new URLSearchParams();
       params.append("term", debouncedSearchTerm);
-  
+
       try {
         const res = await fetch(`/api/search?${params.toString()}`);
         const data = await res.json();
+        // set the data
         setPodcasts(data);
       } catch (error) {
         console.error("Failed to fetch podcasts", error);
@@ -39,17 +40,18 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
         setLoading(false);
       }
     }
-  
+
+    // call the api for the podcast
     fetchPodcast();
   }, [debouncedSearchTerm]);
-  
 
-  const handleButtonClick = (event: React.MouseEvent) => {
+  const moreBtnClicked = (event: React.MouseEvent) => {
     event.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const menuOptionClick = (event: React.MouseEvent) => {
+  // menu options is clicked
+  const menuOptionClicked = (event: React.MouseEvent) => {
     event.stopPropagation();
     const target = event.target as HTMLButtonElement;
     switch (target.value) {
@@ -61,6 +63,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
         break;
     }
 
+    // close the menu when one of the menu is clicked
     setIsMenuOpen(false);
   };
 
@@ -78,10 +81,10 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
         <TopPodcastHeader
           searchTerm={searchTerm}
           podcastsLayout={podcastsLayout}
-          menuOptionClick={menuOptionClick}
+          menuOptionClick={menuOptionClicked}
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
-          handleButtonClick={handleButtonClick}
+          moreBtnClicked={moreBtnClicked}
         />
 
         <TopPodcastList

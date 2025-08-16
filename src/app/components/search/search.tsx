@@ -17,12 +17,11 @@ const Search = ({ placeHolder, searchText, setSearchText }: searchProps) => {
         className={`
           px-2
          border 
-       border-[rgba(255,255,255,0.25)]
+       border-white-25
          rounded-[10px]
          flex-1
          outline-0
-       text-white
-       placeholder-[rgba(255,255,255,0.25)]
+       placeholder-white-25
        focus:border-[#7B7BF0] 
          text-center
        `}

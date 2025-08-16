@@ -1,5 +1,5 @@
 export interface TopPodcastProps {
-  searchTerm:string
+  searchTerm: string;
 }
 
 export interface Podcasts {

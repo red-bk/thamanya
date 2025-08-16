@@ -10,13 +10,13 @@ import { HeaderProps } from "./type";
 
 const Header = ({ searchTerm, setSearchText }: HeaderProps) => {
   return (
-    <header className="flex flex-row  items-center gap-3 sticky top-0 bg-[hsla(234,28%,12%,98%)] z-50 sm:px-0 px-2">
+    <header className="flex flex-row  items-center gap-3 sticky top-0 bg-dark-blue-98 z-50 sm:px-0 px-2">
       <div className="px-[5px] py-3.5 lg:block hidden">
-        <RiArrowLeftSLine size={24} className="text-white opacity-50" />
+        <RiArrowLeftSLine size={24} className="text-white/50" />
       </div>
 
       <div className="px-[5px] py-3.5 lg:block hidden">
-        <RiArrowRightSLine size={24} className="text-white opacity-50" />
+        <RiArrowRightSLine size={24} className="text-white/50" />
       </div>
 
       <Search
@@ -28,15 +28,15 @@ const Header = ({ searchTerm, setSearchText }: HeaderProps) => {
       <Button
         label="Log in"
         type="button"
-        classes="lg:block hidden hover:brightness-[1.25] transition duration-200"
+        classes="lg:block hidden hover:brightness-[1.25] transition duration-200 text-[0.8125rem]"
       />
       <Button
         label="Sign Up"
         type="button"
-        classes="lg:block hidden hover:brightness-[1.25] transition duration-200"
+        classes="lg:block hidden hover:brightness-[1.25] transition duration-200 text-[0.8125rem]"
       />
       <div className="px-[5px] py-3.5 ">
-        <RiMore2Fill size={22} className="text-white  " />
+        <RiMore2Fill size={22} />
       </div>
     </header>
   );

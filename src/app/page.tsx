@@ -19,7 +19,7 @@ export default function Home() {
           <TopEpisodes searchTerm={debouncedSearchTerm} />
         </main>
       ) : (
-        <p className="text-white flex items-center justify-center h-screen flex-1">
+        <p className="flex items-center justify-center h-screen flex-1">
           Type in a search term to start.
         </p>
       )}

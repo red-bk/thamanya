@@ -11,12 +11,13 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
   const [loading, setLoading] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // episodes layout when the more button is clicked could be (compact || grid || scroll)
   const [episodesLayout, setEpisodesLayout] = useState<
     "compact" | "grid" | "scroll"
   >("compact");
 
-  // 1. Debounce the incoming searchTerm
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  // Debounce the incoming searchTerm
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); // 500ms debounce
 
   useEffect(() => {
     async function fetchEpisodes() {
@@ -40,7 +41,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
       }
     }
 
-    // Only fetch if we have a debounced search term
+    // call the api if we have a debounced search term
     if (debouncedSearchTerm) {
       fetchEpisodes();
     } else {
@@ -49,6 +50,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     }
   }, [debouncedSearchTerm]);
 
+  // the options of the more button withe each have label and value
   const moreBtnOptions = useMemo(() => {
     const options = [];
 
@@ -67,12 +69,13 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
     return options;
   }, [episodesLayout]);
 
-  const handleButtonClick = (event: React.MouseEvent) => {
+  const moreBtnClicked = (event: React.MouseEvent) => {
     event.stopPropagation();
 
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // more button option is clicked
   const menuOptionClick = (event: React.MouseEvent | any) => {
     event.stopPropagation();
     const target = event.target as HTMLButtonElement;
@@ -119,7 +122,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
           searchTerm={searchTerm}
           menuOptionClick={menuOptionClick}
           isMenuOpen={isMenuOpen}
-          handleButtonClick={handleButtonClick}
+          moreBtnClicked={moreBtnClicked}
           menuOptions={moreBtnOptions}
           handleCloseMenu={handleCloseMenu}
         />
@@ -136,7 +139,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
           ${episodesLayout == "compact" && `grid md:grid-cols-3   grid-cols-1`}
           ${
             episodesLayout == "grid" &&
-            `grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1`
+            `grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1`
           }
       `}
           >
