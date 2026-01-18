@@ -72,3 +72,12 @@ html {
   color: white;
   font-family: "IBM-Plex-Sans-Arabic-Regular", Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}

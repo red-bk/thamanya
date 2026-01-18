@@ -15,7 +15,8 @@ const Search = ({ placeHolder, searchText, setSearchText }: searchProps) => {
         placeholder={placeHolder}
         type="search"
         className={`
-          px-2
+          px-2.5
+          py-1.5
          border 
        border-white-25
          rounded-[10px]

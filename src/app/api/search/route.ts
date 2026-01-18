@@ -29,7 +29,6 @@ export async function GET(request: Request) {
     const data = await res.json();
 
 
-    console.log("the ahsakjhsjahsjahsjahsjahshjahsjahsjahs", searchTerm)
 
     // Save to different tables based on entity type
     if (data.results && data.results.length > 0) {

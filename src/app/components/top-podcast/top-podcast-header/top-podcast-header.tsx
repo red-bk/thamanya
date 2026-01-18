@@ -34,16 +34,17 @@ const TopPodcastsHeader = ({
 
   return (
     <>
-      <div className="flex justify-between pb-5 border-b border-white-25 sticky top-12 bg-dark-blue-98">
+      <div className="flex justify-between border-b border-white-25 sticky top-12 bg-dark-blue-98 px-5 py-2.5">
         <h2 className="font-bold-arabic">Top podcasts for {searchTerm}</h2>
-        <div className="flex items-center justify-center gap-3">
-          <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-1">
+          <div className="flex items-center justify-center gap-1">
             {/* this is left arrow  */}
             <Button
               label="more icon"
               type="button"
               icon={<RiArrowLeftSLine size={24} className="text-white/50" />}
               iconOnly
+              classes="p-1.5"
             />
             {/* this is right arrow  */}
 
@@ -52,6 +53,7 @@ const TopPodcastsHeader = ({
               type="button"
               icon={<RiArrowRightSLine size={24} className="text-white/50 " />}
               iconOnly
+              classes="p-1.5"
             />
           </div>
 

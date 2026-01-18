@@ -1,14 +1,26 @@
 import {
   RiHomeLine,
-  RiSettings3Line,
-  RiTeamLine,
-  RiFileTextLine,
+  RiEarthLine,
+  RiMenuLine,
+  RiAppsLine,
+  RiTimeLine,
 } from "@remixicon/react";
 
 export const navigationItems = [
-  { name: "Home", href: "/", icon: RiHomeLine },
-  { name: "Discover", href: "/", icon: RiTeamLine },
-  { name: "My Queue", href: "/", icon: RiFileTextLine },
-  { name: "My Podcasts", href: "/", icon: RiSettings3Line },
-  { name: "Recents", href: "/", icon: RiSettings3Line },
+  { name: "Home", href: "/", icon: RiEarthLine, children: [] },
+  {
+    name: "Discover",
+    href: "/",
+    icon: RiHomeLine,
+    children: [],
+  },
+  {
+    name: "Your Stuff",
+    href: "/",
+    children: [
+      { name: "My Queue", href: "/", icon: RiMenuLine },
+      { name: "My Podcasts", href: "/", icon: RiAppsLine },
+      { name: "Recents", href: "/", icon: RiTimeLine },
+    ],
+  },
 ];

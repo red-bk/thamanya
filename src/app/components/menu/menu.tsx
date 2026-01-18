@@ -30,7 +30,7 @@ const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
   return (
     <div
       ref={menuRef}
-      className="absolute top-full right-0 z-50 bg-gradient-to-b from-purple-600 to-purple-700 rounded-lg shadow-lg py-2 min-w-[200px] mt-1"
+      className="absolute top-full right-0 z-50 bg-[linear-gradient(to_top_right,#404080,#6B4080)] rounded-lg shadow-lg py-2 min-w-[200px] mt-1"
     >
       <div className="flex flex-col">
         {options.map((option) => {
@@ -38,7 +38,7 @@ const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
             <button
               value={option.value}
               key={option.value}
-              className="px-4 py-1  text-left hover:bg-purple-500/30 transition-colors"
+              className="px-4 py-1  text-left hover:bg-[rgba(0,0,0,.15)] transition-colors"
               onClick={(e) => {
                 console.log("Add to My Podcasts clicked");
                 onOptionClick(e);

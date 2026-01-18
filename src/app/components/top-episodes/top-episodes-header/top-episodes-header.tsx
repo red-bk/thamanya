@@ -14,10 +14,8 @@ const TopPodcastsHeader = ({
 }: TopEpisodesHeaderProps) => {
   return (
     <>
-      <div className="flex justify-between sticky pb-5 border-b border-white-25  top-12 bg-dark-blue-98 z-50">
-        <h2 className=" font-bold-arabic">
-          Top episodes for {searchTerm}
-        </h2>
+      <div className="flex justify-between sticky pb-5 border-b border-white-25  top-12 bg-dark-blue-98 z-50 px-5 py-2.5">
+        <h2 className=" font-bold-arabic">Top episodes for {searchTerm}</h2>
 
         <div className="flex items-center">
           <div className="relative inline-block">
@@ -25,7 +23,7 @@ const TopPodcastsHeader = ({
             <Button
               label="more icon"
               type="button"
-              icon={<RiMore2Fill size={24}  />}
+              icon={<RiMore2Fill size={24} />}
               iconOnly
               onClick={moreBtnClicked}
             />

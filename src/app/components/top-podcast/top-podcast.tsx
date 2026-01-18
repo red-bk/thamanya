@@ -28,6 +28,8 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
       setLoading(true);
       const params = new URLSearchParams();
       params.append("term", debouncedSearchTerm);
+      // Add the entity parameter set to "podcast"
+      params.append("entity", "podcast");
 
       try {
         const res = await fetch(`/api/search?${params.toString()}`);
@@ -77,7 +79,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
 
   return (
     <>
-      <div className="flex flex-col gap-5 mt-16 px-6">
+      <div className="flex flex-col gap-5 mt-16">
         <TopPodcastHeader
           searchTerm={searchTerm}
           podcastsLayout={podcastsLayout}

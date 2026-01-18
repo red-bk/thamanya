@@ -16,7 +16,7 @@ const TopEpisodesGridScrollLayout = ({
 
   return (
     <>
-      <div className={`flex-shrink-0 rounded-lg overflow-hidden ${bg}`}>
+      <div className={`flex-shrink-0 rounded-lg overflow-hidden  ${bg}`}>
         <div className="flex">
           <div className="w-[100px] h-[100px] flex-shrink-0">
             <Image

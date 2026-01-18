@@ -1,9 +1,6 @@
 import { memo } from "react";
-import { RiMore2Fill } from "@remixicon/react";
-import Button from "../../button/button";
 import { TopPodcastsListProps } from "./types";
-import Image from "next/image";
-import { getRandomColor } from "@/app/utils/utils";
+import TopPodcastItem from "../top-podcast-item/top-podcast-item";
 
 const TopPodcastsList = ({
   podcastsLayout,
@@ -18,57 +15,48 @@ const TopPodcastsList = ({
   }
 
   return (
-    <div
-      className={`
-        ${
-          podcastsLayout === "scroll"
-            ? "flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
-            : "grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3"
-        }`}
-    >
-      {podcasts?.map((item) => {
-        return (
-          <div
-            className="flex flex-col gap-3"
-            key={`${item.collectionId}-${item.trackId}`}
-          >
-            <div
-              className={`
-          h-[200px] 
-          ${podcastsLayout === "scroll" && `w-[200px] `}
-              `}
-            >
-              <Image
-                src={item.artworkUrl100}
-                alt="img"
-                width={400}
-                height={400}
-                className="h-full w-full"
+    <>
+      {podcastsLayout === "scroll" ? (
+        <div
+          className="
+          gap-3 
+          px-6  
+          flex  
+          overflow-x-auto 
+          pb-7
+          [&::-webkit-scrollbar]:h-2
+          [&::-webkit-scrollbar-track]:bg-[#404080]
+          [&::-webkit-scrollbar-thumb]:bg-[#404080]/0
+          [&::-webkit-scrollbar-thumb]:rounded-full
+          group-hover:[&::-webkit-scrollbar-thumb]:bg-[#404080]
+          group-hover:[&::-webkit-scrollbar-thumb:hover]:bg-[#5050a0]
+          [scrollbar-color:#404080_#404080]
+          "
+        >
+          {podcasts?.map((item) => {
+            return (
+              <TopPodcastItem
+                item={item}
+                podcastsLayout={podcastsLayout}
+                key={`${item.collectionId}-${item.trackId}`}
               />
-            </div>
-            <div className="flex justify-between">
-              <div className="flex flex-col ">
-                <p className=" line-clamp-1 text-[0.875rem] font-bold-arabic">
-                  {item.trackName}
-                </p>
-                <span className={`${getRandomColor()} text-xs`}>
-                  {item.artistName}
-                </span>
-              </div>
-
-              <div className="relative inline-block">
-                <Button
-                  label="more icon"
-                  type="button"
-                  icon={<RiMore2Fill size={24} className="text-white-25" />}
-                  iconOnly
-                />
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-3 px-6">
+          {podcasts?.map((item) => {
+            return (
+              <TopPodcastItem
+                item={item}
+                podcastsLayout={podcastsLayout}
+                key={`${item.collectionId}-${item.trackId}`}
+              />
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 

@@ -117,7 +117,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
 
   return (
     <>
-      <div className="flex flex-col gap-5 px-6">
+      <div className="flex flex-col gap-5">
         <TopEpisodesHeader
           searchTerm={searchTerm}
           menuOptionClick={menuOptionClick}
@@ -134,8 +134,21 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
         ) : (
           <div
             className={`
-          gap-3         
-          ${episodesLayout == "scroll" && `flex  overflow-x-auto`}
+          gap-3  
+          px-5    
+          ${
+            episodesLayout == "scroll" &&
+            `flex  
+            pb-7
+            overflow-x-auto   
+            [&::-webkit-scrollbar]:h-2
+          [&::-webkit-scrollbar-track]:bg-[#404080]
+          [&::-webkit-scrollbar-thumb]:bg-[#404080]/0
+          [&::-webkit-scrollbar-thumb]:rounded-full
+          group-hover:[&::-webkit-scrollbar-thumb]:bg-[#404080]
+          group-hover:[&::-webkit-scrollbar-thumb:hover]:bg-[#5050a0]
+          [scrollbar-color:#404080_#404080]`
+          }
           ${episodesLayout == "compact" && `grid md:grid-cols-3   grid-cols-1`}
           ${
             episodesLayout == "grid" &&
