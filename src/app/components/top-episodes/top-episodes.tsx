@@ -108,7 +108,7 @@ const TopEpisodes = ({ searchTerm }: TopEpisodesProps) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center">
-        <Loader />;
+        <Loader />
       </div>
     );
   }
