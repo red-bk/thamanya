@@ -30,9 +30,11 @@ const Menu = ({ isOpen, onClose, options, onOptionClick }: MenuProps) => {
   return (
     <div
       ref={menuRef}
-      className="absolute top-full right-0 z-50 bg-[linear-gradient(to_top_right,#404080,#6B4080)] rounded-lg shadow-lg py-2 min-w-[200px] mt-1"
+      className=" group absolute top-full right-[-7px] bg-[linear-gradient(to_top_right,#404080,#6B4080)] rounded-lg shadow-lg py-2 min-w-[200px] mt-3"
     >
-      <div className="flex flex-col">
+      <span className="absolute border-b-[hsl(279,23%,46%)]    -top-1.5 right-1.5  group-hover:inline-block border-[6px] -translate-x-1/2  border-l-transparent border-r-transparent border-t-0" />
+
+      <div className="flex flex-col  z-[100px]">
         {options.map((option) => {
           return (
             <button

@@ -1,5 +1,5 @@
 import { RiMore2Fill } from "@remixicon/react";
-import Button from "../../button/button";
+import Button from "../../shared/button/button";
 import { getRandomColor } from "@/app/utils/utils";
 import { TopPodcastsItemProps } from "./types";
 import Image from "next/image";

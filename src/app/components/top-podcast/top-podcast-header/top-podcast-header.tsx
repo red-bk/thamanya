@@ -4,8 +4,8 @@ import {
   RiArrowRightSLine,
   RiMore2Fill,
 } from "@remixicon/react";
-import Button from "../../button/button";
-import Menu from "../../menu/menu";
+import Button from "../../shared/button/button";
+import Menu from "../../shared/menu/menu";
 import { TopPodcastsHeaderProps } from "./types";
 
 const TopPodcastsHeader = ({
@@ -34,7 +34,7 @@ const TopPodcastsHeader = ({
 
   return (
     <>
-      <div className="flex justify-between border-b border-white-25 sticky top-12 bg-dark-blue-98 px-5 py-2.5">
+      <div className="flex justify-between border-b border-white-25 lg:sticky top-12 bg-dark-blue-98 px-5 py-2.5">
         <h2 className="font-bold-arabic">Top podcasts for {searchTerm}</h2>
         <div className="flex items-center justify-center gap-1">
           <div className="flex items-center justify-center gap-1">

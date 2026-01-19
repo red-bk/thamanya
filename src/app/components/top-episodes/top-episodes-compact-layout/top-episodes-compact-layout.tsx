@@ -3,7 +3,7 @@ import Image from "next/image";
 import { TopEpisodesCompactLayoutProps } from "./types";
 import { RiMore2Fill } from "@remixicon/react";
 import { getRandomColor } from "@/app/utils/utils";
-import Button from "../../button/button";
+import Button from "../../shared/button/button";
 
 const TopEpisodesCompactLayout = ({ item }: TopEpisodesCompactLayoutProps) => {
   const { artworkUrl60, collectionName, trackName } = item;

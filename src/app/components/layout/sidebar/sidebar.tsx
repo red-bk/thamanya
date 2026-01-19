@@ -2,7 +2,7 @@ import { memo } from "react";
 import { SidebarProps } from "./types";
 import { RiArrowLeftSLine } from "@remixicon/react";
 import Link from "next/link";
-import AppIcon from "../app-global-icon/app-global-icon";
+import AppIcon from "../../shared/app-global-icon/app-global-icon";
 import { navigationItems } from "./data";
 
 const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
                   <a
                     href={item.href}
                     className={`text-sm flex items-center font-medium rounded-lg px-[15px] pt-2.5  
-                    ${item.children.length > 0 ? "text-[hsl(240,3%,65%)] font-bold-arabic text-[12px] uppercase" : "pb-2.5  transition-colors hover:bg-gray-100 hover:text-gray-900"}
+                    ${item.children.length > 0 ? "text-[hsl(240,3%,65%)] font-bold-arabic text-[12px] uppercase" : "pb-2.5  transition-colors hover:bg-[radial-gradient(50%_25%_at_0%_50%,#BA6FDE33_0%,rgba(19,241,255,0)_100%)] backdrop-blur-[10px] hover:text-[rgba(255,255,255,0.75)]"}
                     `}
                   >
                     {Icon && <Icon className="mr-3 h-5 w-5" />}
@@ -60,7 +60,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
                         <a
                           key={child.name}
                           href={child.href}
-                          className={`text-sm flex items-center font-medium rounded-lg px-[15px] py-2.5 transition-colors hover:bg-gray-100 hover:text-gray-900 `}
+                          className={`text-sm flex items-center font-medium rounded-lg px-[15px] py-2.5 transition-colors  hover:bg-[radial-gradient(50%_25%_at_0%_50%,#BA6FDE33_0%,rgba(19,241,255,0)_100%)] backdrop-blur-[10px] hover:text-[rgba(255,255,255,0.75)] `}
                         >
                           {child.icon && (
                             <child.icon className="mr-3 h-5 w-5" />

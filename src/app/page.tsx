@@ -3,7 +3,7 @@
 import { useState } from "react";
 import TopPodcast from "./components/top-podcast/top-podcast";
 import TopEpisodes from "./components/top-episodes/top-episodes";
-import Header from "./components/header/header";
+import Header from "./components/layout/header/header";
 import { useDebounce } from "./hooks/useDebounce";
 
 export default function Home() {

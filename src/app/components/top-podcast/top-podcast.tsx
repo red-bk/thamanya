@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { TopPodcastProps, Podcasts } from "./types";
 
-import Loader from "../loader/loader";
+import Loader from "@/app/components/shared/loader/loader";
 import TopPodcastHeader from "./top-podcast-header/top-podcast-header";
 import TopPodcastList from "./top-podcast-list/top-podcast-list";
 import { useDebounce } from "@/app/hooks/useDebounce";
@@ -13,7 +13,7 @@ const TopPodcast = ({ searchTerm }: TopPodcastProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // podcasts layout when the more button is clicked (grid || scroll)
   const [podcastsLayout, setPodcastsLayout] = useState<"grid" | "scroll">(
-    "scroll"
+    "scroll",
   );
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500); // 500ms debounce

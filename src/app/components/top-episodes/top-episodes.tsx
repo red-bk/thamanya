@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useState } from "react";
 import { TopEpisodesProps } from "./types";
-import Loader from "../loader/loader";
+import Loader from "@/app/components/shared/loader/loader";
 import TopEpisodesGridScrollLayout from "./top-episodes-grid-scroll-layout/top-episodes-grid-scroll-layout.tsx";
 import TopEpisodesCompactLayout from "./top-episodes-compact-layout/top-episodes-compact-layout";
 import TopEpisodesHeader from "./top-episodes-header/top-episodes-header";

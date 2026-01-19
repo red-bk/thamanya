@@ -1,4 +1,3 @@
-import React from "react";
 import { AppIconProps } from "./types";
 
 const AppIcon = ({ width = 45, height = 49.46, className }: AppIconProps) => {

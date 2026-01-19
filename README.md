@@ -1,8 +1,9 @@
 To start the project follow the below steps:
 
 1- npm i
-4- npx prisma studio (to see the api result saved in the database, refresh the window to see the latest data saved in the database)
-5- npm run dev
+2- for window devices please run the command npx prisma generate, mac devices no need.
+3- npx prisma studio (to see the api result saved in the database, refresh the window to see the latest data saved in the database)
+4- npm run dev
 
 My approch as the following:
 
@@ -17,6 +18,6 @@ lastly, the result is shown to the user with two lists top podcasts and top epis
 In prisma I have two table one to save the top episodes and one to save the top podcasts,
 I have one api that is shared between the two lists shown in the frontend, but with different query params to send to the api.
 
-To show the top podcasts the route is https://itunes.apple.com/search?term="فنجان"
+To show the top podcasts the route is https://itunes.apple.com/search?term="فنجان"&entity="podcast"
 
 To show the top episodes the route is https://itunes.apple.com/search?term="فنجان"&media="all"&entity="podcastEpisode"&limit="15"

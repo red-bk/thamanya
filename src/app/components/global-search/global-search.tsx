@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { searchProps } from "./types";
 
-const Search = ({ placeHolder, searchText, setSearchText }: searchProps) => {
+const GlobalSearch = ({ placeHolder, searchText, setSearchText }: searchProps) => {
   const handleSeachTextChange = (e: any) => {
     setSearchText(e.target.value);
   };
@@ -31,4 +31,4 @@ const Search = ({ placeHolder, searchText, setSearchText }: searchProps) => {
   );
 };
 
-export default memo(Search);
+export default memo(GlobalSearch);
